@@ -21,6 +21,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         {
             ballRigidbody = ball.GetComponent<Rigidbody>();
         }
+        StartCoroutine(CoordinatePooling());
     }
     void Update()
     {
@@ -35,6 +36,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     }
     void OnDestroy()
     {
+        StopAllCoroutines();
         CommunicationManager.Instance.OnInternetAvabilityChangedEvent -= InternetAvabilityChanged;
     }
     #endregion
@@ -63,6 +65,18 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
             isHit = true;
         }
         return isHit;
+    }
+    IEnumerator CoordinatePooling()
+    {
+        while (true)
+        {
+            if (!ReferenceEquals(ball, null))
+            {
+                string coordinateText = JsonUtility.ToJson(ball.transform.position);
+                CommunicationManager.Instance.TryToSendToAPI(coordinateText);
+                yield return new WaitForSeconds(Config.ApiPoolingTime);
+            }
+        }
     }
     #endregion
 

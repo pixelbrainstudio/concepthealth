@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
-using System.Net.NetworkInformation;
+using UnityEngine.Networking;
+//using System.Net.NetworkInformation;
 public class CommunicationManager : SingletonMonoBehaviour<CommunicationManager>
 {
     #region Events and Delegates
@@ -37,8 +39,7 @@ public class CommunicationManager : SingletonMonoBehaviour<CommunicationManager>
         {
             return;
         }
-
-        // ToDo webrequest calls
+        StartCoroutine(SendToAPI(content));
     }
     #endregion
 
@@ -46,6 +47,20 @@ public class CommunicationManager : SingletonMonoBehaviour<CommunicationManager>
     private bool GetReachabilityStatus()
     {
         return Application.internetReachability != NetworkReachability.NotReachable;
+    }
+    public IEnumerator SendToAPI(string content)
+    {
+        var request = new UnityWebRequest(Config.ApiURL, "POST");
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(content);
+        request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+        yield return request.SendWebRequest();
+
+        if (request.error != null)
+        {
+            //Eating the errors
+        }
     }
     #endregion
 }
