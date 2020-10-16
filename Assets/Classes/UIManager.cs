@@ -47,7 +47,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     {
         tmpTextCoordinates.text = text;
         textCoordinates.SetActive(true);
-        yield return new WaitForSeconds(Config.Message_delay);
+        yield return new WaitForSeconds(Config.MessageDelay);
         textCoordinates.SetActive(false);
     }
     #endregion
