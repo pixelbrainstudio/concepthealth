@@ -321,7 +321,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 33.29059}
+  m_AnchoredPosition: {x: 0, y: 72}
   m_SizeDelta: {x: 0, y: 66.58118}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &330607541
@@ -1349,7 +1349,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -33.2}
+  m_AnchoredPosition: {x: 0, y: -58}
   m_SizeDelta: {x: 0, y: 66.58115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1482818170
@@ -1533,5 +1533,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d5c7dee63643904aa318dd14c7158fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundSource: {fileID: 0}
-  sfxBounce: {fileID: 0}
+  soundSource: {fileID: 590989331}
+  sfxBounce: {fileID: 8300000, guid: 857796886bc198244a3f5e1e7f0cce6a, type: 3}
